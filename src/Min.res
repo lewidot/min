@@ -1,4 +1,5 @@
 type handler = Request.t => promise<Response.t>
+type middleware = handler => handler
 
 let pathSegments = (req: Request.t) => {
   req
@@ -88,6 +89,37 @@ let serve = (~port=3000, handler: handler) => {
   Console.log(`server listening on http://${hostname}:${portStr}`)
 
   server
+}
+
+let methodToString = (method: method) => {
+  switch method {
+  | GET => "GET"
+  | POST => "POST"
+  | PUT => "PUT"
+  | PATCH => "PATCH"
+  | DELETE => "DELETE"
+  | HEAD => "HEAD"
+  | CONNECT => "CONNECT"
+  | OPTIONS => "OPTIONS"
+  | TRACE => "TRACE"
+  }
+}
+
+let logger = handler => {
+  req => {
+    // Log the request
+    let start = Date.now()
+    let method = req->Request.method->methodToString
+    let path = req->Request.url->URL.make->URL.pathname
+
+    // Call the handler and log the response
+    handler(req)->Promise.thenResolve(response => {
+      let duration = Date.now() - start
+      let status = response->Response.status->Int.toString
+      Console.log(`${method} ${path} ${status} ${Float.toString(duration)}ms`)
+      response
+    })
+  }
 }
 
 let html = (body, ~status=200, ~headers=?) => {

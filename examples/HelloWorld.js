@@ -38,7 +38,7 @@ function handler(req) {
   }
 }
 
-let _server = Min.serve(3000, handler);
+let _server = Min.serve(3000, Min.logger(handler));
 
 export {
   getUser,

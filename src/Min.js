@@ -100,6 +100,43 @@ function serve(portOpt, handler) {
   return server;
 }
 
+function methodToString(method) {
+  switch (method) {
+    case "GET" :
+      return "GET";
+    case "HEAD" :
+      return "HEAD";
+    case "POST" :
+      return "POST";
+    case "PUT" :
+      return "PUT";
+    case "DELETE" :
+      return "DELETE";
+    case "CONNECT" :
+      return "CONNECT";
+    case "OPTIONS" :
+      return "OPTIONS";
+    case "TRACE" :
+      return "TRACE";
+    case "PATCH" :
+      return "PATCH";
+  }
+}
+
+function logger(handler) {
+  return req => {
+    let start = Date.now();
+    let method = methodToString(req.method);
+    let path = new URL(req.url).pathname;
+    return handler(req).then(response => {
+      let duration = Date.now() - start;
+      let status = response.status.toString();
+      console.log(method + ` ` + path + ` ` + status + ` ` + duration.toString() + `ms`);
+      return response;
+    });
+  };
+}
+
 function html(body, statusOpt, headers) {
   let status = statusOpt !== undefined ? statusOpt : 200;
   let contentHeader = [
@@ -131,6 +168,8 @@ export {
   patch,
   $$delete,
   serve,
+  methodToString,
+  logger,
   html,
 }
 /* No side effect */
