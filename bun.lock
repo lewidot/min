@@ -1,10 +1,12 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "min",
       "dependencies": {
         "rescript": "12.0.0-rc.3",
+        "rescript-bun": "2",
       },
     },
   },
@@ -22,5 +24,7 @@
     "@rescript/win32-x64": ["@rescript/win32-x64@12.0.0-rc.3", "", { "os": "win32", "cpu": "x64" }, "sha512-Eyy61o6Wk3Cgiy/99zFCzxumL1WHOGEdbxU+ksqghuD3s2RgBWBobSygf3nhcoNBibXI0Fhpu+XXXoTOsTiQ9w=="],
 
     "rescript": ["rescript@12.0.0-rc.3", "", { "dependencies": { "@rescript/runtime": "12.0.0-rc.3" }, "optionalDependencies": { "@rescript/darwin-arm64": "12.0.0-rc.3", "@rescript/darwin-x64": "12.0.0-rc.3", "@rescript/linux-arm64": "12.0.0-rc.3", "@rescript/linux-x64": "12.0.0-rc.3", "@rescript/win32-x64": "12.0.0-rc.3" }, "bin": { "bsc": "cli/bsc.js", "rescript": "cli/rescript.js", "bstracing": "cli/bstracing.js", "rescript-tools": "cli/rescript-tools.js", "rescript-legacy": "cli/rescript-legacy.js" } }, "sha512-8EOLvO6p5MxpprqpN4tbblfk6uJbz2Q5g/VHA7ii7TJu98JFNLehRjPNHhlEk2G4Lx+PZraSnGudTxBVmyLNoQ=="],
+
+    "rescript-bun": ["rescript-bun@2.1.0", "", { "peerDependencies": { "rescript": ">= 12.0.0-alpha.4" } }, "sha512-8INIikN97UlmJgPy5DAnx0fzkqq8Ux6Glj6iYE+SURfLr66PsgaVTgpmlpXBrBjTM/bhaAL82Ulc0gI60YdFYg=="],
   }
 }

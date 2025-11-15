@@ -1,5 +1,6 @@
 {
   "name": "min",
+  "description": "A minimal web framework powered by Rescript and Bun.",
   "version": "0.0.0",
   "scripts": {
     "res:build": "rescript",
@@ -9,9 +10,10 @@
   "keywords": [
     "rescript"
   ],
-  "author": "",
+  "author": "Lewis Evans",
   "license": "MIT",
   "dependencies": {
-    "rescript": "12.0.0-rc.3"
+    "rescript": "12.0.0-rc.3",
+    "rescript-bun": "2"
   }
 }

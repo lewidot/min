@@ -1,14 +1,22 @@
 {
-	"name": "min",
-	"sources": {
-		"dir": "src",
-		"subdirs": true
-	},
-	"package-specs": {
-		"module": "esmodule",
-		"in-source": true
-	},
-	"suffix": ".res.mjs",
-	"dependencies": [],
-	"compiler-flags": []
+  "name": "min",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "examples",
+      "subdirs": true,
+      "type": "dev"
+    }
+  ],
+
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "dependencies": ["rescript-bun"],
+  "compiler-flags": ["-open RescriptBun", "-open RescriptBun.Globals"]
 }

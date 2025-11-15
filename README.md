@@ -1,23 +1,19 @@
-# ReScript Project Template
+# min
 
-- [Installation](../../README.md)
-
-Official ReScript starter template.
-
-## Installation
-
-```sh
-npm install
-```
+A minimal web framework powered by Rescript and Bun.
 
 ## Build
 
-- Build: `npm run res:build`
-- Clean: `npm run res:clean`
-- Build & watch: `npm run res:dev`
+- Build: `bun run res:build`
+- Clean: `bun run res:clean`
+- Build & watch: `bun run res:dev`
 
-## Run
+## Examples
+
+Check `/examples` to see some applications using `Min`.
+
+To run a simple hello world application:
 
 ```sh
-node src/Demo.res.mjs
+bun examples/HelloWorld.js
 ```
