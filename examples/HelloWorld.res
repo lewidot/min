@@ -13,4 +13,4 @@ let handler = req => {
   }
 }
 
-let _server = Min.serve(~port=3000, handler->Min.logger)
+let _server = Min.serve(~port=3000, handler->Min.logger->Min.requestId)

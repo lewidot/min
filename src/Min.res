@@ -111,12 +111,29 @@ let logger = handler => {
     let start = Date.now()
     let method = req->Request.method->methodToString
     let path = req->Request.url->URL.make->URL.pathname
+    let requestId = req->Request.headers->Headers.get("x-request-id")->Option.getOr("unknown")
 
     // Call the handler and log the response
     handler(req)->Promise.thenResolve(response => {
       let duration = Date.now() - start
       let status = response->Response.status->Int.toString
-      Console.log(`${method} ${path} ${status} ${Float.toString(duration)}ms`)
+      Console.log(`[${requestId}] ${method} ${path} ${status} ${Float.toString(duration)}ms`)
+      response
+    })
+  }
+}
+
+let requestId = handler => {
+  req => {
+    // Generate a unique ID
+    let id = crypto->Crypto.randomUUID
+
+    // Add to request headers
+    req->Request.headers->Headers.set("X-Request-Id", id)
+
+    handler(req)->Promise.thenResolve(response => {
+      // Add to response headers
+      response->Response.headers->Headers.set("X-Request-Id", id)
       response
     })
   }
